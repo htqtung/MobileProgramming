@@ -17,7 +17,7 @@
       class WeatherMap extends React.Component {
         constructor(props) {
           super(props);
-          this.state = {temperature: '', weather: '', weathericonurl: ''};
+          this.state = {temperature: '', weather: '', weatherIconUrl: ''};
         }
         componentDidMount() {
           fetch('http://api.openweathermap.org/data/2.5/weather?q=Helsinki&units=metric&APPID=c75730ea3e3a5d4d25bcb12fb530227f')
@@ -27,7 +27,7 @@
               this.setState({
                 temperature: responseData.main.temp,
                 weather: responseData.weather["0"].main,
-                weathericonurl: 'http://openweathermap.org/img/w/' + responseData.weather["0"].icon + '.png'
+                weatherIconUrl: 'http://openweathermap.org/img/w/' + responseData.weather["0"].icon + '.png'
               });
           });
         }
@@ -38,7 +38,7 @@
               <div>Temperature: {this.state.temperature} Celsius</div>
               <div>Weather: {this.state.weather}</div>
               <div>
-                <img src={this.state.weathericonurl} />
+                <img src={this.state.weatherIconUrl} />
               </div>
             </div>
           );
