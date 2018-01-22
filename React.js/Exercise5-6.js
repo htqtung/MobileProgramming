@@ -50,7 +50,7 @@ class App extends Component {
           <p className="Form-header">Add todo:</p>
           Description: <input type="text" name="description"
             onChange={this.inputChanged} value={this.state.description}/>
-          Date: <input type="text" name="date"
+          Date: <input type="Date" name="date"
             onChange={this.inputChanged} value={this.state.date}/>
           <input type="submit" value="Add"/>
         </form>
