@@ -1,0 +1,63 @@
+<!-- Fetch weather data from OpenWeatherMap API -->
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>React getting started</title>
+  </head>
+  <body>
+    <!-- Root container for react components -->
+    <div id='root'></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <script type="text/babel">
+      class GitHubList extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {listItems: [], input: ''};
+        }
+        searchHandler = () => {
+          fetch('https://api.github.com/search/repositories?q=' + this.state.input)
+          .then((response) => response.json())
+          .then((responseData) => {
+             console.log(responseData);
+              this.setState({
+                listItems: responseData.items,
+              });
+          });
+        }
+
+        inputChanged = (event) => {
+          this.setState({input: event.target.value});
+        }
+
+        render() {
+          const itemRows = this.state.listItems.map((repository) =>
+            <tr key={repository.full_name}>
+              <td>{repository.full_name}</td>
+              <td>{repository.html_url}</td>
+            </tr>
+          )
+          return (
+            <div>
+              <input type="text" value={this.state.input} onChange={this.inputChanged} />
+              <button onClick={this.searchHandler}>Search</button>
+              <h2>Repositories</h2>
+              <table>
+                <tbody>
+                  <tr><th>Name</th><th>URL</th></tr>
+                  {itemRows}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<GitHubList />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
