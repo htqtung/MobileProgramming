@@ -47,7 +47,6 @@ export default class App extends React.Component {
               longitudeDelta: 0.0221
             };
             return {
-              markerTitle: this.state.input,
               input: '',
               region: newRegion,
             }
