@@ -6,7 +6,7 @@ import MapContainer from './MapContainer';
 
 export default class App extends React.Component {
   render() {
-    return <MyPlacesApp style={styles.container} />;
+    return <MyPlacesApp style={styles.container}/>;
   }
 }
 
